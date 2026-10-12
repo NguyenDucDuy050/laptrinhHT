@@ -1,0 +1,7 @@
+ls
+*.o
+*.core
+core
+__pycache__/
+*.pyc
+*.zip
