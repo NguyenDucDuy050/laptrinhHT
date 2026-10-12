@@ -1,0 +1,4 @@
+ls
+*.o
+*.core
+core
