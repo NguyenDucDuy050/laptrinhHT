@@ -40,6 +40,34 @@ make test
 `make clean` xoa executable va object files. Dung `./ls` de chay bai lam;
 `ls` khong co `./` thuong la chuong trinh cua he dieu hanh.
 
+### Chay tu PowerShell qua SSH vao VirtualBox
+
+May ao Ubuntu can dang chay. Tren may Windows da cau hinh SSH key, chay:
+
+```powershell
+ssh -i "$env:USERPROFILE\.ssh\codex_ubuntu" -p 2222 NguyenDucDuy@127.0.0.1
+```
+
+Sau khi dang nhap Ubuntu:
+
+```sh
+cd /media/sf_LapTrinhHeThong
+make
+make test
+./ls -laF
+```
+
+Hoac goi ca build/test tu PowerShell bang mot lenh:
+
+```powershell
+ssh -i "$env:USERPROFILE\.ssh\codex_ubuntu" -p 2222 NguyenDucDuy@127.0.0.1 'cd /media/sf_LapTrinhHeThong && make && make test && ./ls -laF'
+```
+
+Source nam ngay thu muc goc, khong con thu muc con `ls_midterm`.
+Shared Folder da hoat dong va tai khoan da thuoc nhom vboxsf.
+Test tao fixture trong thu muc tam Linux de kiem tra quyen, symlink va socket
+tren filesystem Linux, khong phu thuoc kha nang mo phong cua Shared Folder.
+
 ## 3. Chuc nang
 
 | Tuy chon | Hanh vi |
@@ -117,6 +145,13 @@ block/sparse file, total, inode/device/TZ, ky tu ten file, terminal va quyen doc
 Test quyen doc duoc bo qua khi root vi root co the bo qua quyen thu muc.
 GitHub Actions build GCC va Clang voi -Werror, chay test voi user thuong va root.
 Xem muc Actions cua repository de biet ket qua cua commit dang nop.
+
+Ket qua xac minh ngay 13/10/2026:
+
+- Ubuntu 26.04 trong VirtualBox: build voi -Werror thanh cong, 14/14 test dat.
+- GitHub Actions cua commit 8a7adc1: ca GCC va Clang thanh cong. Moi job chay
+  test user thuong va root (root bo qua test permission-denied theo thiet ke).
+- Log: https://github.com/NguyenDucDuy050/laptrinhHT/actions/runs/38286281538
 
 ## 7. Nop bai
 
